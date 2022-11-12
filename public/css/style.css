@@ -1,0 +1,136 @@
+.background {
+  height: 100vh;
+  background-image: url(/assets/background.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.registration {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  transform: translateY(-40%) scale(0);
+  transition: 0.4s ease-in-out;
+}
+
+.registration.active {
+  transform: translateY(0%) scale(100%);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.registration__container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.registration__container--body {
+  margin: auto;
+  width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 100px 15px;
+  position: relative;
+}
+
+.registration__container--body p {
+  font-size: 28px;
+  font-family: Monsterrat;
+  font-weight: 600;
+  color: rgb(33, 33, 33);
+  margin-bottom: 40px;
+}
+
+.registrion-input {
+  display: block;
+  margin: 25px auto 0px auto;
+  width: 300px;
+  padding: 17px 20px;
+  background-color: rgb(115, 154, 225);
+  border-radius: 10px;
+  border: none;
+  font-family: Monsterrat;
+  font-weight: 500;
+  font-size: 18px;
+  color: blue;
+}
+
+.registration__container--body input:focus {
+  outline: none;
+}
+
+.registration__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
