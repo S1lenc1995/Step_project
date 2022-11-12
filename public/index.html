@@ -14,17 +14,17 @@
         <header>
             <ul class="header">
             <li><img src="./assets/logo.svg" alt="photo"></li> 
-            <li><button type="button" class="open btn btn-primary btn-lg">В х і д</button></li>
+            <li><button type="button" class="open btn btn-primary btn-lg">Enter</button></li>
             </ul>
 
             <div id="registration-form" class="registration">
                 <div class="registration__container">
                     <div class="registration__container--body">
                         <p>Enter your details</p>
-                        <form action="">
-                          <input class="registrion-input" type="email" placeholder="Email">
-                            <input class="registrion-input" type="password" placeholder="Password">
-                            <button type="button" class="enter btn btn-primary btn-lg">У В І Й Т И</button>
+                        <form id="registration_form" action="">
+                            <input  name="email" class="registrion-input" type="email" placeholder="Email"  required>
+                            <input name="password" class="registrion-input" type="password" placeholder="Password"  required>
+                            <button type="submit" class="enter btn btn-primary btn-lg">У В І Й Т И</button>
                         </form>
                         <div class="registration__close">&#10006</div>
                     </div>

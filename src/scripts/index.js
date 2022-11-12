@@ -1,4 +1,7 @@
 "use strict";
-import { openRegistration } from "./modals/function/registrationMenu";
-import { doctorsSelect } from "./modals/function/blankFormAddInputs";
+import { openRegistration } from "./function/registrationMenu";
+import { doctorsSelect } from "./function/blankFormAddInputs";
+import { registrationForm } from "./classes/createToken";
+
+
 
