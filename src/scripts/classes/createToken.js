@@ -1,15 +1,11 @@
-import { registrationMenu } from "../function/registrationMenu" 
-import { getToken } from "../API/getToken"
-
-export let registrationForm = document.querySelector('#registration_form')
-registrationForm.addEventListener('submit', (e)=>{
-    e.preventDefault()
-    const userData = {
-        email: e.target.email.value,
-        password: e.target.password.value 
+export class UserToken{
+    constructor(token){
+        this.token=token
     }
-    console.log(userData)
-    const{email: email, password: password} = userData
-    getToken(email, password)
-})
-
+    setToken(value){
+        this.token = value
+    }
+    getToken(){
+        return this.token 
+    }
+}

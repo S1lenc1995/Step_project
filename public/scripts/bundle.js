@@ -5,8 +5,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getToken = getToken;
+var _token = require("../function/token");
 function getToken(email, password) {
-  fetch("https://ajax.test-danit.com/api/v2/cards/login", {
+  const idIncorrect = document.querySelector("#Incorrect");
+  if (idIncorrect) {
+    idIncorrect.remove();
+  }
+  return fetch("https://ajax.test-danit.com/api/v2/cards/login", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -15,35 +20,37 @@ function getToken(email, password) {
       email: `${email}`,
       password: `${password}`
     })
-  }).then(response => response.text()).then(token => console.log(token));
+  }).then(response => {
+    if (!response.ok) {
+      _token.registrationForm.insertAdjacentHTML("beforeend", `<p id = 'Incorrect'>Incorrect username or password</p>`);
+    }
+    return response.text();
+  }).then(token => {
+    return token;
+  });
 }
 
-},{}],2:[function(require,module,exports){
+},{"../function/token":5}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.registrationForm = void 0;
-var _registrationMenu = require("../function/registrationMenu");
-var _getToken = require("../API/getToken");
-let registrationForm = document.querySelector('#registration_form');
-exports.registrationForm = registrationForm;
-registrationForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const userData = {
-    email: e.target.email.value,
-    password: e.target.password.value
-  };
-  console.log(userData);
-  const {
-    email: email,
-    password: password
-  } = userData;
-  (0, _getToken.getToken)(email, password);
-});
+exports.UserToken = void 0;
+class UserToken {
+  constructor(token) {
+    this.token = token;
+  }
+  setToken(value) {
+    this.token = value;
+  }
+  getToken() {
+    return this.token;
+  }
+}
+exports.UserToken = UserToken;
 
-},{"../API/getToken":1,"../function/registrationMenu":4}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -100,8 +107,38 @@ closeRegistration.addEventListener('click', () => {
 },{}],5:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.registrationForm = void 0;
+var _registrationMenu = require("../function/registrationMenu");
+var _getToken = require("../API/getToken");
+var _createToken = require("../classes/createToken");
+const modal = new _createToken.UserToken();
+let registrationForm = document.querySelector('#registration_form');
+exports.registrationForm = registrationForm;
+registrationForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const userData = {
+    email: e.target.email.value,
+    password: e.target.password.value
+  };
+  console.log(userData);
+  const {
+    email: email,
+    password: password
+  } = userData;
+  let token = await (0, _getToken.getToken)(email, password);
+  console.log(token);
+  modal.setToken(token);
+  console.log(modal.getToken());
+});
+
+},{"../API/getToken":1,"../classes/createToken":2,"../function/registrationMenu":4}],6:[function(require,module,exports){
+"use strict";
+
 var _registrationMenu = require("./function/registrationMenu");
 var _blankFormAddInputs = require("./function/blankFormAddInputs");
-var _createToken = require("./classes/createToken");
+var _token = require("./function/token");
 
-},{"./classes/createToken":2,"./function/blankFormAddInputs":3,"./function/registrationMenu":4}]},{},[5]);
+},{"./function/blankFormAddInputs":3,"./function/registrationMenu":4,"./function/token":5}]},{},[6]);
