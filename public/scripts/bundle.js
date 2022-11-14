@@ -11,26 +11,31 @@ function getToken(email, password) {
   if (idIncorrect) {
     idIncorrect.remove();
   }
-  return fetch("https://ajax.test-danit.com/api/v2/cards/login", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email: `${email}`,
-      password: `${password}`
-    })
-  }).then(response => {
-    if (!response.ok) {
-      _token.registrationForm.insertAdjacentHTML("beforeend", `<p id = 'Incorrect'>Incorrect username or password</p>`);
-    }
-    return response.text();
-  }).then(token => {
-    return token;
-  });
+  try {
+    return fetch("https://ajax.test-danit.com/api/v2/cards/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: `${email}`,
+        password: `${password}`
+      })
+    }).then(response => {
+      if (!response.ok) {
+        _token.registrationForm.insertAdjacentHTML("beforeend", `<p id = 'Incorrect'>Incorrect username or password</p>`);
+        throw new Error('Incorrect username or password');
+      }
+      return response.text();
+    }).then(token => {
+      return token;
+    });
+  } catch (e) {
+    console.log(e);
+  }
 }
 
-},{"../function/token":5}],2:[function(require,module,exports){
+},{"../function/token":6}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -80,31 +85,41 @@ doctorsSelect.addEventListener('click', () => {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.createBlanckFormBtn = exports.closeBlankMenuBtn = void 0;
+let blankMenu = document.querySelector('.blanck-menu');
+let createBlanckFormBtn = document.querySelector('.Create-blank');
+exports.createBlanckFormBtn = createBlanckFormBtn;
+createBlanckFormBtn.addEventListener('click', e => {
+  e.preventDefault();
+  blankMenu.classList.add('active');
+});
+let closeBlankMenuBtn = document.querySelector('.close__blank--form');
+exports.closeBlankMenuBtn = closeBlankMenuBtn;
+closeBlankMenuBtn.addEventListener('click', () => {
+  blankMenu.classList.remove('active');
+});
+
+},{}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.registrationMenu = exports.openRegistration = void 0;
 let openRegistration = document.querySelector('.open');
 exports.openRegistration = openRegistration;
 let closeRegistration = document.querySelector('.registration__close');
 let registrationMenu = document.querySelector('#registration-form');
 exports.registrationMenu = registrationMenu;
-let blanckForm = document.querySelector('#blanck-form');
-console.log(openRegistration);
 openRegistration.addEventListener('click', function (e) {
   e.preventDefault();
   registrationMenu.classList.add('active');
-  if (openRegistration.innerHTML == 'Створити візит') {
-    blanckForm.classList.add('active');
-  }
 });
 closeRegistration.addEventListener('click', () => {
   registrationMenu.classList.remove('active');
 });
 
-/* enter.addEventListener('click', ()=>{
-    registrationMenu.classList.remove('active')
-    openRegistration.innerHTML = 'Створити візит'
-}) */
-
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -114,6 +129,8 @@ exports.registrationForm = void 0;
 var _registrationMenu = require("../function/registrationMenu");
 var _getToken = require("../API/getToken");
 var _createToken = require("../classes/createToken");
+var _registrationMenu2 = require("./registrationMenu");
+var _openBlanckForm = require("./openBlanckForm");
 const modal = new _createToken.UserToken();
 let registrationForm = document.querySelector('#registration_form');
 exports.registrationForm = registrationForm;
@@ -132,13 +149,17 @@ registrationForm.addEventListener('submit', async e => {
   console.log(token);
   modal.setToken(token);
   console.log(modal.getToken());
+  _registrationMenu2.openRegistration.classList.add('hidden');
+  _registrationMenu.registrationMenu.classList.remove('active');
+  _openBlanckForm.createBlanckFormBtn.classList.remove('hidden');
 });
 
-},{"../API/getToken":1,"../classes/createToken":2,"../function/registrationMenu":4}],6:[function(require,module,exports){
+},{"../API/getToken":1,"../classes/createToken":2,"../function/registrationMenu":5,"./openBlanckForm":4,"./registrationMenu":5}],7:[function(require,module,exports){
 "use strict";
 
 var _registrationMenu = require("./function/registrationMenu");
 var _blankFormAddInputs = require("./function/blankFormAddInputs");
 var _token = require("./function/token");
+var _openBlanckForm = require("./function/openBlanckForm");
 
-},{"./function/blankFormAddInputs":3,"./function/registrationMenu":4,"./function/token":5}]},{},[6]);
+},{"./function/blankFormAddInputs":3,"./function/openBlanckForm":4,"./function/registrationMenu":5,"./function/token":6}]},{},[7]);

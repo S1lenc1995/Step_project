@@ -65,6 +65,10 @@ table {
   padding-top: 30px;
 }
 
+.header .hidden {
+  display: none;
+}
+
 .registration {
   width: 100%;
   height: 100%;

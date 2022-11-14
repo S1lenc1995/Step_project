@@ -1,10 +1,12 @@
 import {registrationForm} from '../function/token'
 
 export function getToken(email,password){
+ 
   const idIncorrect = document.querySelector("#Incorrect");
   if (idIncorrect) {
     idIncorrect.remove();
   }
+  try{
     return fetch("https://ajax.test-danit.com/api/v2/cards/login", {
   method: 'POST',
   headers: {
@@ -18,6 +20,7 @@ export function getToken(email,password){
         "beforeend",
         `<p id = 'Incorrect'>Incorrect username or password</p>`
       );
+      throw new Error ('Incorrect username or password')
     }
 
   return response.text()
@@ -25,3 +28,8 @@ export function getToken(email,password){
   .then(token => {
     return token})
   }
+  catch(e){
+    console.log(e)
+    }
+} 
+
