@@ -35,7 +35,25 @@ function getToken(email, password) {
   }
 }
 
-},{"../function/token":6}],2:[function(require,module,exports){
+},{"../function/token":8}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sendCard = sendCard;
+function sendCard(token, card) {
+  fetch("https://ajax.test-danit.com/api/v2/cards", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(card)
+  }).then(response => console.log(response.status)).then(response => console.log(response));
+}
+
+},{}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55,7 +73,7 @@ class UserToken {
 }
 exports.UserToken = UserToken;
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -79,7 +97,32 @@ doctorsSelect.addEventListener('click', () => {
   }
 });
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.blankForm = void 0;
+var _sendCard = require("../API/sendCard");
+var _token = require("./token");
+let blankForm = document.querySelector('.blank__form');
+exports.blankForm = blankForm;
+blankForm.onsubmit = e => {
+  e.preventDefault();
+  let fd = new FormData(e.target);
+  const values = {};
+  for (let pair of fd.entries()) {
+    if (pair[1] == '') {
+      continue;
+    }
+    values[pair[0]] = pair[1];
+  }
+  console.log(values);
+  (0, _sendCard.sendCard)(_token.modal.getToken(), values);
+};
+
+},{"../API/sendCard":2,"./token":8}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -99,7 +142,7 @@ closeBlankMenuBtn.addEventListener('click', () => {
   blankMenu.classList.remove('active');
 });
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -119,19 +162,20 @@ closeRegistration.addEventListener('click', () => {
   registrationMenu.classList.remove('active');
 });
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.registrationForm = void 0;
+exports.registrationForm = exports.modal = void 0;
 var _registrationMenu = require("../function/registrationMenu");
 var _getToken = require("../API/getToken");
 var _createToken = require("../classes/createToken");
 var _registrationMenu2 = require("./registrationMenu");
 var _openBlanckForm = require("./openBlanckForm");
 const modal = new _createToken.UserToken();
+exports.modal = modal;
 let registrationForm = document.querySelector('#registration_form');
 exports.registrationForm = registrationForm;
 registrationForm.addEventListener('submit', async e => {
@@ -154,12 +198,14 @@ registrationForm.addEventListener('submit', async e => {
   _openBlanckForm.createBlanckFormBtn.classList.remove('hidden');
 });
 
-},{"../API/getToken":1,"../classes/createToken":2,"../function/registrationMenu":5,"./openBlanckForm":4,"./registrationMenu":5}],7:[function(require,module,exports){
+},{"../API/getToken":1,"../classes/createToken":3,"../function/registrationMenu":7,"./openBlanckForm":6,"./registrationMenu":7}],9:[function(require,module,exports){
 "use strict";
 
 var _registrationMenu = require("./function/registrationMenu");
 var _blankFormAddInputs = require("./function/blankFormAddInputs");
 var _token = require("./function/token");
 var _openBlanckForm = require("./function/openBlanckForm");
+var _getDataVisit = require("./function/getDataVisit.js");
+console.log(_getDataVisit.blankForm);
 
-},{"./function/blankFormAddInputs":3,"./function/openBlanckForm":4,"./function/registrationMenu":5,"./function/token":6}]},{},[7]);
+},{"./function/blankFormAddInputs":4,"./function/getDataVisit.js":5,"./function/openBlanckForm":6,"./function/registrationMenu":7,"./function/token":8}]},{},[9]);

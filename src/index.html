@@ -14,7 +14,7 @@
         <header>
             <ul class="header">
             <li><img src="./assets/logo.svg" alt="photo"></li> 
-             <li><button type="button" class="btn btn-primary btn-lg hidden Create-blank ">Create blank</button></li>
+             <li><button type="button" class="btn btn-primary btn-lg Create-blank hidden ">Create blank</button></li>
              <li><button type="button" class="open btn btn-primary btn-lg">Enter</button></li>
             </ul>
 
@@ -36,8 +36,8 @@
             <div id="blanck-form" class="registration blanck-menu">
                 <div class="registration__container">
                     <div class="registration__container--body">
-                        <form>
-                            <select class="form-select"  aria-label="Default select example">
+                        <form class="blank__form">
+                            <select name="doctor" class="form-select"  aria-label="Default select example">
                                 <option value="" disabled selected>Choose a doctor</option>
                                 <option>Cardiologist</option>
                                 <option>Dentist</option>
@@ -46,13 +46,17 @@
                               <fieldset class="mb-3 main_inputs hidden">
                                 <div>
                                     <span class="input-group-text" id="inputGroup-sizing-default">The purpose of the visit</span>
-                                    <input  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                                    <input name="purpose"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
                                 </div>
                                 <div>
+                                  <span class="input-group-text" id="inputGroup-sizing-default">Date of visit</span>
+                                  <input name="date"  type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                              </div>
+                                <div>
                                   <span class="input-group-text" id="inputGroup-sizing-default">Brief description of the visit </span>
-                                  <textarea type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"></textarea>
+                                  <textarea name="description" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"></textarea>
                                 </div>
-                                <select class="form-select"  aria-label="Default select example">
+                                <select name="urgency" class="form-select"  aria-label="Default select example">
                                   <option value="" disabled selected>The urgency of the visit</option>
                                   <option>Ordinary</option>
                                   <option>Priority</option>
@@ -60,36 +64,36 @@
                               </select>
                               <div>
                                 <span class="input-group-text" id="inputGroup-sizing-default">Your full name</span>
-                                <input  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                                <input name="name"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
                               </div>
                                 </fieldset>
                                 <fieldset data="Cardiologist" class="mb-3 extra_inputs  hidden">
                                   <div>
                                     <span class="input-group-text" id="inputGroup-sizing-default">Normal pressure</span>
-                                    <input  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                                    <input name="pressure"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
                                  </div>
                                  <div>
                                   <span class="input-group-text" id="inputGroup-sizing-default">Body mass index</span>
-                                  <input  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                                  <input name="mass"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
                                </div>
                                <div>
                                 <span class="input-group-text" id="inputGroup-sizing-default">Transferred diseases of the cardiovascular system</span>
-                                <input  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                                <input name="diseases"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
                              </div>
                                 </fieldset>
                                 <fieldset data="Dentist" class="mb-3 extra_inputs hidden">
-                                  <div>
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Date of last visit</span>
-                                    <input  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
-                                 </div>
+                                 <div>
+                                  <span class="input-group-text" id="inputGroup-sizing-default">Date of last visit</span>
+                                  <input name="date"  type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                              </div>
                                 </fieldset>
                                 <fieldset data="Therapist" class="mb-3 extra_inputs hidden">
                                   <div>
                                     <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
-                                    <input  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
+                                    <input name="age" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">    
                                  </div>
                                 </fieldset>
-                                <button type="button" class="enter btn btn-primary btn-lg">Createvisit</button>
+                                <button type="submit" class="enter btn btn-primary btn-lg">Createvisit</button>
                         </form>
                         <div class="registration__close close__blank--form">&#10006</div>
                     </div>

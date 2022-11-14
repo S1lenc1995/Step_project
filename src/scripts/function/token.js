@@ -4,11 +4,7 @@ import {UserToken} from '../classes/createToken'
 import { openRegistration} from './registrationMenu'
 import { createBlanckFormBtn } from "./openBlanckForm"
 
-const modal = new UserToken();
-
-
-
-
+export const modal = new UserToken();
 
 export let registrationForm = document.querySelector('#registration_form')
 registrationForm.addEventListener('submit', async (e)=>{
