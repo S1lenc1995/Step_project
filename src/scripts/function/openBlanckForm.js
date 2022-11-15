@@ -1,4 +1,4 @@
-let blankMenu = document.querySelector('.blanck-menu')
+export let blankMenu = document.querySelector('.blanck-menu')
 export let createBlanckFormBtn = document.querySelector('.Create-blank')
 createBlanckFormBtn.addEventListener('click',(e)=>{
     e.preventDefault()

@@ -3,10 +3,12 @@ import { getToken } from "../API/getToken"
 import {UserToken} from '../classes/createToken'
 import { openRegistration} from './registrationMenu'
 import { createBlanckFormBtn } from "./openBlanckForm"
+import { Modal } from "../classes/modal"
 
 export const modal = new UserToken();
+const regMenu = new Modal;
 
-export let registrationForm = document.querySelector('#registration_form')
+export let registrationForm = document.querySelector('.registration_form')
 registrationForm.addEventListener('submit', async (e)=>{
     e.preventDefault()
     const userData = {
@@ -20,7 +22,7 @@ registrationForm.addEventListener('submit', async (e)=>{
     modal.setToken(token)
     console.log(modal.getToken())
     openRegistration.classList.add('hidden')
-    registrationMenu.classList.remove('active')
+    regMenu.closeRegMenu()
     createBlanckFormBtn.classList.remove('hidden')
 })
 

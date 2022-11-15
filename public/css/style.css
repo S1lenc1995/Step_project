@@ -97,7 +97,7 @@ table {
   background-color: white;
   border-radius: 10px;
   text-align: center;
-  padding: 100px 15px;
+  padding: 30px 15px;
   position: relative;
 }
 
@@ -137,4 +137,8 @@ table {
 
 .hidden {
   display: none;
+}
+
+.container-cards {
+  background: azure;
 }

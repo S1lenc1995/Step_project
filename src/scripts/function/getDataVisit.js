@@ -1,7 +1,12 @@
 import { sendCard } from "../API/sendCard";
 import { modal } from "./token";
+import { blankMenu } from "./openBlanckForm";
+import { allCards } from "../API/getAllCards";
+
+
+
 export let blankForm = document.querySelector('.blank__form')
-blankForm.onsubmit =  (e) => {
+blankForm.onsubmit = async (e) => {
     e.preventDefault();
     let fd = new FormData(e.target)
     const values = {};
@@ -12,5 +17,8 @@ blankForm.onsubmit =  (e) => {
       values[pair[0]] = pair[1];
     }
     console.log(values)
+    blankMenu.classList.remove('active')
    sendCard(modal.getToken(), values) 
+   let arrAllCards = await allCards(modal.getToken())
+   console.log(arrAllCards)
 }

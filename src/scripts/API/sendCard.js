@@ -8,5 +8,5 @@ fetch("https://ajax.test-danit.com/api/v2/cards", {
   body:  JSON.stringify(card)
 })
   .then(response => console.log(response.status))
-  .then(response => console.log(response))
+  .then(response => response)
 }
