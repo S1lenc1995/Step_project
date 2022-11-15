@@ -53,7 +53,7 @@ function getToken(email, password) {
   }
 }
 
-},{"../function/token":10}],3:[function(require,module,exports){
+},{"../function/token":11}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77,6 +77,42 @@ function sendCard(token, card) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Cardiologist = void 0;
+class Cardiologist {
+  constructor({
+    description,
+    diseases,
+    doctor,
+    id,
+    mass,
+    name,
+    pressure,
+    purpose,
+    urgency
+  }) {
+    this.description = description;
+    this.diseases = diseases;
+    this.doctor = doctor;
+    this.id = id;
+    this.mass = mass;
+    this.name = name;
+    this.pressure = pressure;
+    this.purpose = purpose;
+    this.urgency = urgency;
+  }
+  render() {
+    let container = document.querySelector('.container-cards');
+    container.insertAdjacentHTML('beforeend', `<p>${this.name}</p>`);
+  }
+}
+exports.Cardiologist = Cardiologist;
+
+},{}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.UserToken = void 0;
 class UserToken {
   constructor(token) {
@@ -91,7 +127,7 @@ class UserToken {
 }
 exports.UserToken = UserToken;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -111,7 +147,7 @@ class Modal {
 }
 exports.Modal = Modal;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -135,7 +171,7 @@ doctorsSelect.addEventListener('click', () => {
   }
 });
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -146,6 +182,8 @@ var _sendCard = require("../API/sendCard");
 var _token = require("./token");
 var _openBlanckForm = require("./openBlanckForm");
 var _getAllCards = require("../API/getAllCards");
+var _cardiologist = require("../classes/cardiologist");
+const card = new _cardiologist.Cardiologist();
 let blankForm = document.querySelector('.blank__form');
 exports.blankForm = blankForm;
 blankForm.onsubmit = async e => {
@@ -158,14 +196,19 @@ blankForm.onsubmit = async e => {
     }
     values[pair[0]] = pair[1];
   }
-  console.log(values);
   _openBlanckForm.blankMenu.classList.remove('active');
   (0, _sendCard.sendCard)(_token.modal.getToken(), values);
   let arrAllCards = await (0, _getAllCards.allCards)(_token.modal.getToken());
   console.log(arrAllCards);
+  arrAllCards.forEach(el => {
+    card(el).render();
+    const {
+      doctor: value
+    } = el;
+  });
 };
 
-},{"../API/getAllCards":1,"../API/sendCard":3,"./openBlanckForm":8,"./token":10}],8:[function(require,module,exports){
+},{"../API/getAllCards":1,"../API/sendCard":3,"../classes/cardiologist":4,"./openBlanckForm":9,"./token":11}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -186,7 +229,7 @@ closeBlankMenuBtn.addEventListener('click', () => {
   blankMenu.classList.remove('active');
 });
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -206,7 +249,7 @@ closeRegistration.addEventListener('click', () => {
   container.closeRegMenu();
 });
 
-},{"../classes/modal":5}],10:[function(require,module,exports){
+},{"../classes/modal":6}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -244,7 +287,7 @@ registrationForm.addEventListener('submit', async e => {
   _openBlanckForm.createBlanckFormBtn.classList.remove('hidden');
 });
 
-},{"../API/getToken":2,"../classes/createToken":4,"../classes/modal":5,"../function/registrationMenu":9,"./openBlanckForm":8,"./registrationMenu":9}],11:[function(require,module,exports){
+},{"../API/getToken":2,"../classes/createToken":5,"../classes/modal":6,"../function/registrationMenu":10,"./openBlanckForm":9,"./registrationMenu":10}],12:[function(require,module,exports){
 "use strict";
 
 var _registrationMenu = require("./function/registrationMenu");
@@ -254,4 +297,4 @@ var _openBlanckForm = require("./function/openBlanckForm");
 var _getDataVisit = require("./function/getDataVisit.js");
 console.log(_getDataVisit.blankForm);
 
-},{"./function/blankFormAddInputs":6,"./function/getDataVisit.js":7,"./function/openBlanckForm":8,"./function/registrationMenu":9,"./function/token":10}]},{},[11]);
+},{"./function/blankFormAddInputs":7,"./function/getDataVisit.js":8,"./function/openBlanckForm":9,"./function/registrationMenu":10,"./function/token":11}]},{},[12]);
